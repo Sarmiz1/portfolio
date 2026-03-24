@@ -1,89 +1,104 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Samuel Joseph | Frontend Developer</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Samuel Joseph | Developer Story</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
+    <!-- NAV -->
+    <header class="navbar">
+      <div class="logo">Samuel.dev</div>
 
-    <!-- ================= NAVBAR ================= -->
-    <nav class="navbar">
-      <h1 class="logo">Samuel.dev</h1>
+      <nav class="nav-links">
+        <a href="#intro">Intro</a>
+        <a href="#story">Story</a>
+        <a href="#journey">Journey</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
 
-      <!-- HAMBURGER -->
-      <div class="menu-toggle" id="menu-toggle">☰</div>
+      <div class="nav-actions">
+        <button id="theme-toggle">🌙</button>
+        <button id="menu-toggle">☰</button>
+      </div>
+    </header>
 
-      <ul id="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#intro">Intro</a>
+      <a href="#story">Story</a>
+      <a href="#journey">Journey</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
 
-    <!-- ================= HERO ================= -->
-    <section id="home" class="section hero">
-      <h2>Hi, I'm Samuel Joseph</h2>
-
-      <!-- TYPING TEXT -->
-      <p class="typing"></p>
-
-      <img src="https://via.placeholder.com/200" class="profile-img">
-
-      <a href="#contact" class="btn">Hire Me</a>
+    <!-- INTRO -->
+    <section id="intro" class="section hero fade">
+      <div class="hero-box">
+        <h1>Hi, I'm Samuel Joseph</h1>
+        <p class="typing"></p>
+        <img src="https://via.placeholder.com/160" />
+      </div>
     </section>
 
-    <!-- ================= ABOUT ================= -->
-    <section id="about" class="section">
-      <h2>About Me</h2>
-      <p>
-        Frontend Developer skilled in React, APIs, and performance optimization.
-      </p>
+    <!-- STORY -->
+    <section id="story" class="section fade">
+      <h2>My Story</h2>
+
+      <div class="story-block">
+        <img src="https://via.placeholder.com/500x300" />
+        <p>
+          My journey started from curiosity about how websites work. That
+          curiosity became a discipline, leading me into frontend development
+          with React and JavaScript. I now focus on building clean, responsive,
+          and meaningful digital experiences that solve real problems.
+        </p>
+      </div>
     </section>
 
-    <!-- ================= PROJECTS ================= -->
-    <section id="projects" class="section">
+    <!-- JOURNEY -->
+    <section id="journey" class="section fade">
+      <h2>My Journey</h2>
+
+      <div class="story-block reverse">
+        <img src="https://via.placeholder.com/500x300" />
+        <p>
+          From 2020 studying Computer Science to working at XibFnx Solutions,
+          I’ve grown through real production experience — building React apps,
+          integrating APIs, managing state, and optimizing UI performance.
+        </p>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section fade">
       <h2>Projects</h2>
 
-      <div class="card">
-        <h3>Katangua</h3>
-        <p>E-commerce platform</p>
-      </div>
+      <div class="projects-grid">
+        <div class="project-card">
+          <img src="https://via.placeholder.com/400x250" />
+          <h3>Katangua E-Commerce</h3>
+          <p>React-based e-commerce platform with cart & API integration.</p>
+        </div>
 
-      <div class="card">
-        <h3>CoinVerse</h3>
-        <p>Crypto dashboard</p>
-      </div>
-    </section>
-
-    <!-- ================= GALLERY ================= -->
-    <section id="gallery" class="section">
-      <h2>Gallery</h2>
-      <div class="gallery">
-        <img src="https://via.placeholder.com/200">
-        <img src="https://via.placeholder.com/200">
-        <img src="https://via.placeholder.com/200">
-        <img src="https://via.placeholder.com/200">
-        <img src="https://via.placeholder.com/200">
+        <div class="project-card">
+          <img src="https://via.placeholder.com/400x250" />
+          <h3>CoinVerse</h3>
+          <p>Crypto dashboard with real-time data and responsive UI.</p>
+        </div>
       </div>
     </section>
 
-    <!-- ================= CONTACT ================= -->
-    <section id="contact" class="section">
+    <!-- CONTACT -->
+    <section id="contact" class="section fade">
       <h2>Contact</h2>
       <p>Email: samueljoseph199515@gmail.com</p>
     </section>
 
-    <footer>
-      <p>© 2026 Samuel Joseph</p>
-    </footer>
-
     <script src="script.js"></script>
+    
   </body>
-
 </html>
