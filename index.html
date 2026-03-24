@@ -1,114 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Samuel Joseph | Frontend Developer</title>
 
-  <!-- CSS LINK -->
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samuel Joseph | Frontend Developer</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
 
-  <!-- ================= NAVBAR ================= -->
-  <nav class="navbar">
-    <h1 class="logo">Samuel.dev</h1>
-    <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#gallery">Gallery</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
+  <body>
 
-  <!-- ================= HERO SECTION ================= -->
-  <section id="home" class="section hero">
-    <h2>Hi, I'm Samuel Joseph</h2>
-    <p>Frontend Developer | React Specialist</p>
+    <!-- ================= NAVBAR ================= -->
+    <nav class="navbar">
+      <h1 class="logo">Samuel.dev</h1>
 
-    <!-- PROFILE IMAGE (REPLACE WITH YOUR REAL IMAGE) -->
-    <img src="https://via.placeholder.com/200" alt="Samuel Image" class="profile-img">
+      <!-- HAMBURGER -->
+      <div class="menu-toggle" id="menu-toggle">☰</div>
 
-    <a href="#contact" class="btn">Hire Me</a>
-  </section>
-
-  <!-- ================= ABOUT ================= -->
-  <section id="about" class="section">
-    <h2>About Me</h2>
-    <p>
-      I am a Frontend Developer with experience building scalable and responsive web applications using React.js.
-      I specialize in performance optimization, API integration, and user-friendly interfaces.
-    </p>
-  </section>
-
-  <!-- ================= EXPERIENCE ================= -->
-  <section class="section">
-    <h2>Experience</h2>
-    <div class="card">
-      <h3>XibFnx Solutions</h3>
-      <p>Frontend Developer (May 2024 - Jan 2026)</p>
-      <ul>
-        <li>Built responsive React applications</li>
-        <li>Integrated REST APIs with Axios</li>
-        <li>Improved performance and UX</li>
+      <ul id="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
-    </div>
-  </section>
+    </nav>
 
-  <!-- ================= PROJECTS ================= -->
-  <section id="projects" class="section">
-    <h2>Projects</h2>
+    <!-- ================= HERO ================= -->
+    <section id="home" class="section hero">
+      <h2>Hi, I'm Samuel Joseph</h2>
 
-    <div class="card">
-      <h3>Katangua (E-Commerce)</h3>
-      <p>React + Tailwind + REST API</p>
-      <a href="http://ecommerce-project-react-env.eba-hpfwbuyn.eu-north-1.elasticbeanstalk.com/" target="_blank">View Project</a>
-    </div>
+      <!-- TYPING TEXT -->
+      <p class="typing"></p>
 
-    <div class="card">
-      <h3>CoinVerse (Crypto Dashboard)</h3>
-      <p>Real-time crypto tracking app</p>
-      <a href="https://coinverse-seven.vercel.app/" target="_blank">View Project</a>
-    </div>
+      <img src="https://via.placeholder.com/200" class="profile-img">
 
-  </section>
+      <a href="#contact" class="btn">Hire Me</a>
+    </section>
 
-  <!-- ================= IMAGE GALLERY ================= -->
-  <section id="gallery" class="section">
-    <h2>Gallery</h2>
+    <!-- ================= ABOUT ================= -->
+    <section id="about" class="section">
+      <h2>About Me</h2>
+      <p>
+        Frontend Developer skilled in React, APIs, and performance optimization.
+      </p>
+    </section>
 
-    <!-- REPLACE THESE WITH YOUR REAL IMAGES -->
-    <div class="gallery">
-      <img src="https://via.placeholder.com/200" alt="Samuel Image 1">
-      <img src="https://via.placeholder.com/200" alt="Samuel Image 2">
-      <img src="https://via.placeholder.com/200" alt="Samuel Image 3">
-      <img src="https://via.placeholder.com/200" alt="Samuel with friends 1">
-      <img src="https://via.placeholder.com/200" alt="Samuel with friends 2">
-    </div>
-  </section>
+    <!-- ================= PROJECTS ================= -->
+    <section id="projects" class="section">
+      <h2>Projects</h2>
 
-  <!-- ================= SKILLS ================= -->
-  <section class="section">
-    <h2>Skills</h2>
-    <p>React, JavaScript, Tailwind, Node.js, REST APIs, Git</p>
-  </section>
+      <div class="card">
+        <h3>Katangua</h3>
+        <p>E-commerce platform</p>
+      </div>
 
-  <!-- ================= CONTACT ================= -->
-  <section id="contact" class="section">
-    <h2>Contact Me</h2>
-    <p>Email: samueljoseph199515@gmail.com</p>
-    <p>Phone: +234 808 414 2612</p>
-    <p>GitHub: github.com/Sarmiz1</p>
-  </section>
+      <div class="card">
+        <h3>CoinVerse</h3>
+        <p>Crypto dashboard</p>
+      </div>
+    </section>
 
-  <!-- ================= FOOTER ================= -->
-  <footer>
-    <p>© 2026 Samuel Joseph</p>
-  </footer>
+    <!-- ================= GALLERY ================= -->
+    <section id="gallery" class="section">
+      <h2>Gallery</h2>
+      <div class="gallery">
+        <img src="https://via.placeholder.com/200">
+        <img src="https://via.placeholder.com/200">
+        <img src="https://via.placeholder.com/200">
+        <img src="https://via.placeholder.com/200">
+        <img src="https://via.placeholder.com/200">
+      </div>
+    </section>
 
-  <!-- JS LINK -->
-  <script src="script.js"></script>
+    <!-- ================= CONTACT ================= -->
+    <section id="contact" class="section">
+      <h2>Contact</h2>
+      <p>Email: samueljoseph199515@gmail.com</p>
+    </section>
 
-</body>
+    <footer>
+      <p>© 2026 Samuel Joseph</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+
 </html>
