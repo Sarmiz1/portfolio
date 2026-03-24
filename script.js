@@ -46,7 +46,7 @@ const observer = new IntersectionObserver(entries => {
 document.querySelectorAll(".fade").forEach(el => observer.observe(el));
 
 // TYPING EFFECT
-const words = ["Frontend Developer", "UI Engineer", "React Builder"];
+const words = ["Frontend Developer", "UI Engineer", "React Builder", "TalwindCss Expert"];
 let i = 0;
 let j = 0;
 
