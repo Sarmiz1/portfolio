@@ -29,10 +29,18 @@
       </nav>
 
       <div class="nav-actions">
-        <button id="theme-toggle">🌙</button>
+        <button id="theme-toggle" class="theme-switch">
+          <span class="knob">
+            <span class="icon sun">☀️</span>
+            <span class="icon moon">🌙</span>
+          </span>
+        </button>
+
         <button id="menu-toggle">☰</button>
       </div>
     </header>
+
+    <div id="particles"></div>
 
     <!-- MOBILE MENU -->
     <div class="mobile-menu" id="mobileMenu">
@@ -143,7 +151,9 @@
           </div>
 
           <div class="journey-slide">
-            <img src="Media/flatlay-of-a-coffee-mug-and-items-to-plan-travel.jpg" />
+            <img
+              src="Media/flatlay-of-a-coffee-mug-and-items-to-plan-travel.jpg"
+            />
             <p>
               During this time, I worked extensively with React, focusing on
               building reusable components, scalable UI architectures, and

@@ -21,23 +21,76 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* ================= DARK MODE ================= */
+  /* ================= DARK MODE TOGGLE ================= */
+  const particlesContainer = document.getElementById("particles");
+
+  function createParticles(x, y) {
+    for (let i = 0; i < 18; i++) {
+      const p = document.createElement("div");
+      p.classList.add("particle");
+
+      particlesContainer.appendChild(p);
+
+      const angle = Math.random() * Math.PI * 2;
+      const radius = Math.random() * 60 + 20;
+
+      const dx = Math.cos(angle) * radius;
+      const dy = Math.sin(angle) * radius;
+
+      gsap.set(p, {
+        left: x,
+        top: y,
+        scale: Math.random() * 1 + 0.5
+      });
+
+      gsap.to(p, {
+        x: dx,
+        y: dy,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        onComplete: () => p.remove()
+      });
+    }
+  }
+
   if (themeBtn) {
-    // load saved theme
-    if (localStorage.getItem("theme") === "dark") {
+    const savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme === "dark") {
       document.body.classList.add("dark");
-      themeBtn.innerText = "☀️";
     }
 
-    themeBtn.addEventListener("click", () => {
-      document.body.classList.toggle("dark");
+    themeBtn.addEventListener("click", (e) => {
+      const rect = themeBtn.getBoundingClientRect();
+      const x = rect.left + rect.width / 2;
+      const y = rect.top + rect.height / 2;
 
-      const isDark = document.body.classList.contains("dark");
+      const isDark = document.body.classList.toggle("dark");
 
-      themeBtn.innerText = isDark ? "☀️" : "🌙";
       localStorage.setItem("theme", isDark ? "dark" : "light");
+
+      // GSAP SPRING KNOB ANIMATION
+      const knob = themeBtn.querySelector(".knob");
+
+      gsap.to(knob, {
+        x: isDark ? 30 : 0,
+        duration: 0.7,
+        ease: "elastic.out(1, 0.6)"
+      });
+
+      // ICON MICRO ANIMATION
+      gsap.fromTo(
+        themeBtn.querySelector(".icon"),
+        { scale: 0.5, rotate: -30 },
+        { scale: 1, rotate: 0, duration: 0.4 }
+      );
+
+      // PARTICLE BURST
+      createParticles(x, y);
     });
   }
+
 
 
   /* ================= SMOOTH SCROLL (ANCHOR) ================= */
@@ -90,13 +143,13 @@ document.addEventListener("DOMContentLoaded", () => {
     function type() {
       const currentWord = words[wordIndex];
 
-      // ✅ SET TEXT FIRST (no premature increment)
+      //  SET TEXT FIRST (no premature increment)
       typingEl.textContent = currentWord.substring(0, charIndex);
 
       if (!deleting) {
         charIndex++;
 
-        // ✅ FULL WORD REACHED
+        //  FULL WORD REACHED
         if (charIndex > currentWord.length) {
           deleting = true;
           setTimeout(type, 1200); // pause before deleting
@@ -105,7 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         charIndex--;
 
-        // ✅ WORD FULLY DELETED
+        //  WORD FULLY DELETED
         if (charIndex === 0) {
           deleting = false;
           wordIndex = (wordIndex + 1) % words.length;
@@ -155,7 +208,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const dir = block.classList.contains("reverse") ? 1 : -1;
 
-      // 🔥 INITIAL STATE (this defines BOTH entry & exit direction)
+      //  INITIAL STATE (this defines BOTH entry & exit direction)
       gsap.set(img, {
         opacity: 0,
         x: 40 * dir
