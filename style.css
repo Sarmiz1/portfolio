@@ -1,3 +1,6 @@
+/* Cleanest of Code currrently*/
+
+
 :root {
   --muted: #64748b;
   --card: #f8fafc;
@@ -5,11 +8,12 @@
   --bg: #ffffff;
   --text: #111;
   --sec-color: #e50914;
-}
+} 
 
 * {
   box-sizing: border-box;
-}
+} 
+
 
 body.dark {
   --bg: #0b1220;

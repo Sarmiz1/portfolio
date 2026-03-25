@@ -1,3 +1,7 @@
+/* Cleanest of Code currrently*/
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
   const menu = document.getElementById("mobileMenu");
   const btn = document.getElementById("menu-toggle");
