@@ -249,6 +249,10 @@ body.dark .theme-switch .moon {
   display: block;
 }
 
+.journey-slide p {
+  padding: 0 1rem;
+}
+
 .journey-prev,
 .journey-next {
   position: absolute;
