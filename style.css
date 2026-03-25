@@ -45,6 +45,8 @@ body {
   background: var(--bg);
   color: var(--text);
   scroll-behavior: smooth;
+  position: relative;
+  z-index: 1;
 }
 
 /* NAVBAR */
@@ -210,8 +212,9 @@ body.dark .theme-switch .moon {
   inset: 0;
   pointer-events: none;
   overflow: hidden;
-  z-index: 9999;
+  z-index: 99999;
 }
+
 
 .particle {
   position: absolute;
@@ -239,6 +242,7 @@ body.dark .theme-switch .moon {
   opacity: 1;
   transform: translateY(0);
 }
+
 
 /* HERO CINEMATIC */
 
@@ -313,6 +317,11 @@ body.dark .theme-switch .moon {
 .story-block.reverse {
   display: flex;
   flex-direction: row-reverse;
+}
+
+.story-block img,
+.story-block p {
+  will-change: transform, opacity;
 }
 
 /* JOURNEY CAROUSEL ANIMATION BASE */
@@ -552,6 +561,7 @@ body.dark .theme-switch .moon {
 .footer p:hover {
   color: var(--text);
 }
+
 
 /* RESPONSIVE */
 @media (max-width: 768px) {

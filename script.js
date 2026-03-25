@@ -150,26 +150,21 @@ document.addEventListener("DOMContentLoaded", () => {
     gsap.registerPlugin(ScrollTrigger);
 
     gsap.utils.toArray(".section").forEach(section => {
-      gsap.fromTo(section,
-        { opacity: 0, y: 40 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          scrollTrigger: {
-            trigger: section,
-            start: "top 85%",
-            scrub: 0.5
-          }
+      gsap.from(section, {
+        y: 40,
+        duration: 1,
+        scrollTrigger: {
+          trigger: section,
+          start: "top 85%",
+          scrub: 0.5
         }
-      );
+      });
     });
 
     /* STORY */
     gsap.utils.toArray(".story-block").forEach(block => {
       const img = block.querySelector("img");
       const text = block.querySelector("p");
-
       const dir = block.classList.contains("reverse") ? 1 : -1;
 
       gsap.set([img, text], { opacity: 0, x: 40 * dir });
@@ -224,7 +219,6 @@ document.addEventListener("DOMContentLoaded", () => {
       pos += amount;
       track.style.transition = "transform 0.4s ease";
       track.style.transform = `translateX(${pos}px)`;
-
       setTimeout(() => {
         track.style.transition = "none";
       }, 400);
