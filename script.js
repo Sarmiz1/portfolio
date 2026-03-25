@@ -165,19 +165,35 @@ document.addEventListener("DOMContentLoaded", () => {
     gsap.utils.toArray(".story-block").forEach(block => {
       const img = block.querySelector("img");
       const text = block.querySelector("p");
+
       const dir = block.classList.contains("reverse") ? 1 : -1;
 
-      gsap.set([img, text], { opacity: 0, x: 40 * dir });
+      const imgX = 50 * dir;
+      const textX = -50 * dir;
 
-      gsap.timeline({
+      // initial state
+      gsap.set(img, { opacity: 0, x: imgX });
+      gsap.set(text, { opacity: 0, x: textX });
+
+      const tl = gsap.timeline({
         scrollTrigger: {
           trigger: block,
-          start: "top 80%",
-          toggleActions: "play none none reverse"
+          start: "top 85%",
+          end: "top 55%",
+          scrub: 0.6
         }
+      });
+
+      tl.to(img, {
+        opacity: 1,
+        x: 0,
+        ease: "power2.out"
       })
-        .to(img, { opacity: 1, x: 0, duration: 1 })
-        .to(text, { opacity: 1, x: 0, duration: 1 }, "-=0.6");
+        .to(text, {
+          opacity: 1,
+          x: 0,
+          ease: "power2.out"
+        }, 0.1);
     });
   }
 
