@@ -562,6 +562,9 @@ body.dark .theme-switch .moon {
   color: var(--text);
 }
 
+.nothing {
+  color: #0b1220;
+}
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
