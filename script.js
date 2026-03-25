@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  /* ================= ELEMENTS ================= */
   const menu = document.getElementById("mobileMenu");
   const btn = document.getElementById("menu-toggle");
   const themeBtn = document.getElementById("theme-toggle");
@@ -21,45 +20,33 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* ================= DARK MODE TOGGLE ================= */
+  /* ================= THEME + PARTICLES ================= */
   const particlesContainer = document.getElementById("particles");
 
   function createParticles(x, y) {
     for (let i = 0; i < 18; i++) {
       const p = document.createElement("div");
       p.classList.add("particle");
-
       particlesContainer.appendChild(p);
 
       const angle = Math.random() * Math.PI * 2;
       const radius = Math.random() * 60 + 20;
 
-      const dx = Math.cos(angle) * radius;
-      const dy = Math.sin(angle) * radius;
-
-      gsap.set(p, {
-        left: x,
-        top: y,
-        scale: Math.random() * 1 + 0.5
-      });
+      gsap.set(p, { left: x, top: y });
 
       gsap.to(p, {
-        x: dx,
-        y: dy,
+        x: Math.cos(angle) * radius,
+        y: Math.sin(angle) * radius,
         opacity: 0,
         duration: 0.8,
-        ease: "power3.out",
         onComplete: () => p.remove()
       });
     }
   }
 
   if (themeBtn) {
-    const savedTheme = localStorage.getItem("theme");
-
-    if (savedTheme === "dark") {
-      document.body.classList.add("dark");
-    }
+    const saved = localStorage.getItem("theme");
+    if (saved === "dark") document.body.classList.add("dark");
 
     themeBtn.addEventListener("click", (e) => {
       const rect = themeBtn.getBoundingClientRect();
@@ -67,33 +54,21 @@ document.addEventListener("DOMContentLoaded", () => {
       const y = rect.top + rect.height / 2;
 
       const isDark = document.body.classList.toggle("dark");
-
       localStorage.setItem("theme", isDark ? "dark" : "light");
 
-      // GSAP SPRING KNOB ANIMATION
       const knob = themeBtn.querySelector(".knob");
 
       gsap.to(knob, {
         x: isDark ? 30 : 0,
-        duration: 0.7,
-        ease: "elastic.out(1, 0.6)"
+        duration: 0.6,
+        ease: "elastic.out(1,0.6)"
       });
 
-      // ICON MICRO ANIMATION
-      gsap.fromTo(
-        themeBtn.querySelector(".icon"),
-        { scale: 0.5, rotate: -30 },
-        { scale: 1, rotate: 0, duration: 0.4 }
-      );
-
-      // PARTICLE BURST
       createParticles(x, y);
     });
   }
 
-
-
-  /* ================= SMOOTH SCROLL (ANCHOR) ================= */
+  /* ================= SMOOTH SCROLL ================= */
   document.querySelectorAll("a[href^='#']").forEach(link => {
     link.addEventListener("click", e => {
       const target = document.querySelector(link.getAttribute("href"));
@@ -105,11 +80,13 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* ================= ACTIVE NAV ================= */
-  const updateActiveLinks = () => {
+  const updateActive = () => {
     let current = "";
 
     sections.forEach(sec => {
-      if (window.scrollY >= sec.offsetTop - 150) current = sec.id;
+      if (window.scrollY >= sec.offsetTop - 150) {
+        current = sec.id;
+      }
     });
 
     [...navLinks, ...mobileLinks].forEach(link => {
@@ -120,48 +97,41 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  window.addEventListener("scroll", updateActiveLinks);
-  updateActiveLinks();
+  window.addEventListener("scroll", updateActive);
+  updateActive();
 
-  /* ================= SECTION FADE ================= */
+  /* ================= FADE SECTIONS ================= */
   const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add("show");
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add("show");
     });
   }, { threshold: 0.15 });
 
-  sections.forEach(sec => observer.observe(sec));
+  sections.forEach(s => observer.observe(s));
 
   /* ================= TYPING ================= */
   if (typingEl) {
     const words = ["Frontend Developer", "UI Engineer", "React Builder"];
 
-    let wordIndex = 0;
-    let charIndex = 0;
-    let deleting = false;
+    let i = 0, j = 0, deleting = false;
 
     function type() {
-      const currentWord = words[wordIndex];
+      const word = words[i];
 
-      //  SET TEXT FIRST (no premature increment)
-      typingEl.textContent = currentWord.substring(0, charIndex);
+      typingEl.textContent = word.substring(0, j);
 
       if (!deleting) {
-        charIndex++;
-
-        //  FULL WORD REACHED
-        if (charIndex > currentWord.length) {
+        j++;
+        if (j > word.length) {
           deleting = true;
-          setTimeout(type, 1200); // pause before deleting
+          setTimeout(type, 1200);
           return;
         }
       } else {
-        charIndex--;
-
-        //  WORD FULLY DELETED
-        if (charIndex === 0) {
+        j--;
+        if (j === 0) {
           deleting = false;
-          wordIndex = (wordIndex + 1) % words.length;
+          i = (i + 1) % words.length;
         }
       }
 
@@ -171,12 +141,10 @@ document.addEventListener("DOMContentLoaded", () => {
     type();
   }
 
-
-  /* ================= GSAP GLOBAL SCROLL (FRAMER FEEL) ================= */
+  /* ================= GSAP SCROLL ================= */
   if (window.gsap && window.ScrollTrigger) {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Smooth subtle page motion
     gsap.utils.toArray(".section").forEach(section => {
       gsap.fromTo(section,
         { opacity: 0, y: 40 },
@@ -184,75 +152,37 @@ document.addEventListener("DOMContentLoaded", () => {
           opacity: 1,
           y: 0,
           duration: 1,
-          ease: "power2.out",
           scrollTrigger: {
             trigger: section,
-            start: "top 90%",
-            end: "top 60%",
-            scrub: 1, //  THIS gives framer smoothness
+            start: "top 85%",
+            scrub: 0.5
           }
         }
       );
     });
-  }
 
-  /* ================= STORY GSAP (SMOOTH + PREMIUM) ================= */
-
-  /* ================= STORY GSAP (DIRECTION CONSISTENT) ================= */
-  if (window.gsap && window.ScrollTrigger) {
-    gsap.registerPlugin(ScrollTrigger);
-
-    gsap.utils.toArray(".story-block").forEach((block) => {
+    /* STORY */
+    gsap.utils.toArray(".story-block").forEach(block => {
       const img = block.querySelector("img");
       const text = block.querySelector("p");
 
       const dir = block.classList.contains("reverse") ? 1 : -1;
 
-      //  INITIAL STATE (this defines BOTH entry & exit direction)
-      gsap.set(img, {
-        opacity: 0,
-        x: 40 * dir
-      });
+      gsap.set([img, text], { opacity: 0, x: 40 * dir });
 
-      gsap.set(text, {
-        opacity: 0,
-        x: -25 * dir
-      });
-
-      const tl = gsap.timeline({
+      gsap.timeline({
         scrollTrigger: {
           trigger: block,
-          start: "top 75%",
-          end: "bottom 30%",
-
-          //  KEY: proper reverse behavior
+          start: "top 80%",
           toggleActions: "play none none reverse"
         }
-      });
-
-      // ENTRY
-      tl.to(img, {
-        opacity: 1,
-        x: 0,
-        duration: 1.2,
-        ease: "power3.out"
-      });
-
-      tl.to(
-        text,
-        {
-          opacity: 1,
-          x: 0,
-          duration: 1.2,
-          ease: "power3.out"
-        },
-        "-=0.8"
-      );
+      })
+        .to(img, { opacity: 1, x: 0, duration: 1 })
+        .to(text, { opacity: 1, x: 0, duration: 1 }, "-=0.6");
     });
   }
 
-
-  /* ================= JOURNEY CAROUSEL (FIXED REAL LOOP + DRAG) ================= */
+  /* ================= FIXED JOURNEY CAROUSEL (NO OVERFLOW) ================= */
 
   function initJourneyCarousel() {
     const track = document.querySelector(".journey-track");
@@ -262,62 +192,46 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!track || !carousel) return;
 
-    // duplicate slides for seamless loop
-    track.innerHTML += track.innerHTML;
-
     let pos = 0;
-    let speed = 0.25;
+    const speed = 0.3;
     let paused = false;
-    let isAnimating = false;
 
-    const slideWidth = 340; // card width + gap
+    const slideWidth = 320;
 
-    function autoScroll() {
-      if (!paused && !isAnimating) {
+    function animate() {
+      if (!paused) {
         pos -= speed;
 
-        if (Math.abs(pos) >= track.scrollWidth / 2) {
-          pos = 0;
+        const maxScroll = track.scrollWidth;
+
+        if (Math.abs(pos) > maxScroll - window.innerWidth) {
+          pos = 0; // safe reset (NO duplication needed)
         }
 
-        track.style.transform = `translate3d(${pos}px,0,0)`;
+        track.style.transform = `translateX(${pos}px)`;
       }
 
-      requestAnimationFrame(autoScroll);
+      requestAnimationFrame(animate);
     }
 
-    autoScroll();
+    animate();
 
-    function slideTo(newPos) {
-      isAnimating = true;
-      paused = true;
-
-      track.style.transition = "transform 0.5s ease";
-      track.style.transform = `translate3d(${newPos}px,0,0)`;
-
-      pos = newPos;
+    function move(amount) {
+      pos += amount;
+      track.style.transition = "transform 0.4s ease";
+      track.style.transform = `translateX(${pos}px)`;
 
       setTimeout(() => {
         track.style.transition = "none";
-        isAnimating = false;
-        paused = false;
-      }, 500);
+      }, 400);
     }
 
-    if (nextBtn && prevBtn) {
-      nextBtn.addEventListener("click", () => {
-        slideTo(pos - slideWidth);
-      });
+    nextBtn?.addEventListener("click", () => move(-slideWidth));
+    prevBtn?.addEventListener("click", () => move(slideWidth));
 
-      prevBtn.addEventListener("click", () => {
-        slideTo(pos + slideWidth);
-      });
-    }
-
-    carousel.addEventListener("mouseenter", () => (paused = true));
-    carousel.addEventListener("mouseleave", () => (paused = false));
+    carousel.addEventListener("mouseenter", () => paused = true);
+    carousel.addEventListener("mouseleave", () => paused = false);
   }
 
   initJourneyCarousel();
-
 });
